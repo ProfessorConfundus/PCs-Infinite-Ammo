@@ -22,6 +22,7 @@ data:extend{unlimitedFirearmMagazine,unlimitedFirearmMagazine_recipe} ]]
 local generatedPrototypes = {}
 local generatedRecipes = {}
 for key, prototype in pairs(data.raw["ammo"]) do
+---@diagnostic disable-next-line: undefined-field
     local currentWorkingPrototype = table.deepcopy(prototype)
     if string.sub(prototype.name,1,string.len("pc-unlimited-"))=="pc-unlimited-" then
         goto continue
@@ -37,6 +38,7 @@ for key, prototype in pairs(data.raw["ammo"]) do
             icon_size = 64
         }
     }
+---@diagnostic disable-next-line: undefined-field
     local currentWorkingRecipe = table.deepcopy(data.raw["recipe"][prototype.name])
     currentWorkingRecipe.enabled = false
     currentWorkingRecipe.name = "pc-unlimited-" .. prototype.name
