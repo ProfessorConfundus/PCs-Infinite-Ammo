@@ -1,0 +1,9 @@
+{
+    "name": "PCs-Infinite-Ammo",
+    "version": "0.1.0",
+    "title": "PC's Infinite Ammo",
+    "author": "ProfessorConfundus",
+    "factorio_version": "1.1",
+    "dependencies": ["base >= 1.1"],
+    "description": "Adds versions of the vanilla ammo that never run out."
+}
