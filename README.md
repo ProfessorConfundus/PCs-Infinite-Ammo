@@ -8,7 +8,7 @@ This mod has not been tested to be compatible with multiplayer, and has had no t
 
 ## Contributing
 
-Feel free to make a pull request to this repository. I don't really feel the need to have any contributing guidelines. *With that said*, however, if you are considering/want to add versions for another mod's ammunition, please discuss it with me beforehand.
+Feel free to contribute here. 
 
 ## License
 
