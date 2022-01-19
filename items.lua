@@ -40,7 +40,7 @@ for key, prototype in pairs(data.raw["ammo"]) do
     }
 ---@diagnostic disable-next-line: undefined-field
     local currentWorkingRecipe = table.deepcopy(data.raw["recipe"][prototype.name])
-    currentWorkingRecipe.enabled = false
+    currentWorkingRecipe.enabled = true
     currentWorkingRecipe.name = "pc-unlimited-" .. prototype.name
     currentWorkingRecipe.ingredients = {{prototype.name,1},{"stone",1}}
     currentWorkingRecipe.result = "pc-unlimited-" .. prototype.name
