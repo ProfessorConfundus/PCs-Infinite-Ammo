@@ -17,11 +17,14 @@ data:extend{unlimitedFirearmMagazine,unlimitedFirearmMagazine_recipe} ]]
 
 
 
--- todo: fix errors on starting up
+-- todo: get regular and explosive tank shells to register.
 
 local generatedPrototypes = {}
 local generatedRecipes = {}
-for key, prototype in pairs(data.raw["ammo"]) do
+for _, prototype in pairs(data.raw["ammo"]) do
+    --log("prototype name ---")
+    --log(prototype.name)
+
 ---@diagnostic disable-next-line: undefined-field
     local currentWorkingPrototype = table.deepcopy(prototype)
     if string.sub(prototype.name,1,string.len("pc-unlimited-"))=="pc-unlimited-" then
@@ -38,19 +41,56 @@ for key, prototype in pairs(data.raw["ammo"]) do
             icon_size = 64
         }
     }
----@diagnostic disable-next-line: undefined-field
-    local currentWorkingRecipe = table.deepcopy(data.raw["recipe"][prototype.name])
-    currentWorkingRecipe.enabled = true
-    currentWorkingRecipe.name = "pc-unlimited-" .. prototype.name
-    currentWorkingRecipe.ingredients = {{prototype.name,1},{"stone",1}}
-    currentWorkingRecipe.result = "pc-unlimited-" .. prototype.name
+
+    --log(currentWorkingPrototype.name)
 
     table.insert(generatedPrototypes, currentWorkingPrototype)
+
+    --[[ log("\n")
+    log("prototypes list ---")
+    for pKey, pValue in pairs(generatedPrototypes) do
+        log(pKey)
+        log(pValue.name)
+    end ]]
+    --log("\n")
+
+---@diagnostic disable-next-line: undefined-field
+    local currentWorkingRecipe = table.deepcopy(data.raw["recipe"][prototype.name])
+    --log(currentWorkingRecipe.name)
+    currentWorkingRecipe.name = "pc-unlimited-" .. prototype.name
+    currentWorkingRecipe.normal = {
+        enabled = true,
+        ingredients = {{prototype.name,1},{"stone",1}},
+        result = "pc-unlimited-" .. prototype.name,
+        hidden = false,
+        hide_from_player_crafting = false
+    }
+    currentWorkingRecipe.expensive = nil
+
+    --log(currentWorkingRecipe.name)
+
     table.insert(generatedRecipes, currentWorkingRecipe)
+
+    --[[ log("\n")
+    log("recipes list ---")
+    for rKey, rValue in pairs(generatedRecipes) do
+        log(rKey)
+        log(rValue.name)
+        log("r: " .. tostring(rValue.result))
+        log("c: " .. tostring(rValue.category))
+    end
+    log("\n") ]]
 
     ::continue::
 end
 
+--log("\n")
+--log("data extending ---")
 for index, value in ipairs(generatedPrototypes) do
     data:extend{value, generatedRecipes[index]}
+    --[[ log("\n")
+    log(tostring(index))
+    log(value.name)
+    log(generatedRecipes[index].name)
+    log("\n") ]]
 end
