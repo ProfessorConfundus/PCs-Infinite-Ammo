@@ -17,7 +17,7 @@ data:extend{unlimitedFirearmMagazine,unlimitedFirearmMagazine_recipe} ]]
 
 
 
--- todo: get regular and explosive tank shells to register.
+-- todo: nothing :)
 
 local generatedPrototypes = {}
 local generatedRecipes = {}
