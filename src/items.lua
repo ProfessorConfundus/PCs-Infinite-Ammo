@@ -36,15 +36,30 @@ for _, prototype in pairs(data.raw["ammo"]) do
     end
     currentWorkingPrototype.name = "pc-unlimited-" .. currentWorkingPrototype.name
     currentWorkingPrototype.magazine_size = math.huge
-    currentWorkingPrototype.icons = {
-        {
-            icon = currentWorkingPrototype.icon
-        },
-        {
-            icon = "__PCs-Infinite-Ammo__/icons/infinity icon 64.png",
-            icon_size = 64
-        }
-    }
+	local infinityIcon = {
+		icon = "__PCs-Infinite-Ammo__/icons/infinity icon 64.png",
+		icon_size = 64
+	}
+	if currentWorkingPrototype.icons then
+		table.insert(currentWorkingPrototype.icons, infinityIcon)
+	elseif currentWorkingPrototype.icon then
+		currentWorkingPrototype.icons = {
+			{
+				icon = currentWorkingPrototype.icon
+			},
+			infinityIcon,
+		}
+	else
+		log("Icons and icon is missing for "..currentWorkingPrototype.name..". Will probably break if anything is changed")
+	--[[
+		currentWorkingPrototype.icons = {
+			{
+				icon = currentWorkingPrototype.icon --nil will cause an error (no icon)
+			},
+			infinityIcon,
+		}
+	--]]
+	end
 
     local currentWorkingPrototypeLocale = rustyLocale.of_item(prototype)
     currentWorkingPrototype.localised_name = {"naming-scheme.name", currentWorkingPrototypeLocale.name}
