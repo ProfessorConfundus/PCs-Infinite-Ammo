@@ -17,7 +17,11 @@ data:extend{unlimitedFirearmMagazine,unlimitedFirearmMagazine_recipe} ]]
 
 
 
--- todo: nothing :)
+-- todo: finish porting naming system to better LocalisedString version.
+
+
+local rustyLocale = require '__rusty-locale__.locale'
+
 
 local generatedPrototypes = {}
 local generatedRecipes = {}
@@ -41,6 +45,10 @@ for _, prototype in pairs(data.raw["ammo"]) do
             icon_size = 64
         }
     }
+
+    local currentWorkingPrototypeLocale = rustyLocale.of_item(prototype)
+    currentWorkingPrototype.localised_name = {"naming-scheme.name", currentWorkingPrototypeLocale.name}
+    currentWorkingPrototype.localised_description = {"naming-scheme.description", currentWorkingPrototypeLocale.name}
 
     --log(currentWorkingPrototype.name)
 
@@ -84,6 +92,21 @@ for _, prototype in pairs(data.raw["ammo"]) do
     ::continue::
 end
 
+---@diagnostic disable-next-line: undefined-field
+local testItemPrototype = table.deepcopy(data.raw["ammo"]["firearm-magazine"])
+
+testItemPrototype.name = "test-pc-unlimited-no-locale-item"
+testItemPrototype.icons = {
+    {
+        icon = testItemPrototype.icon,
+        tint = {r = 0.69, g = 0.420, b = 0.1337}
+    }
+}
+
+local testItemLocale = rustyLocale.of_item(testItemPrototype)
+-- testItemPrototype.localised_name = {"naming-scheme.name", testItemLocale.name}
+-- testItemPrototype.localised_description = {"naming-scheme.description", testItemLocale.name}
+
 --log("\n")
 --log("data extending ---")
 for index, value in ipairs(generatedPrototypes) do
@@ -94,3 +117,4 @@ for index, value in ipairs(generatedPrototypes) do
     log(generatedRecipes[index].name)
     log("\n") ]]
 end
+data:extend{testItemPrototype}
