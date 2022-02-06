@@ -8,7 +8,7 @@ This mod works by iterating through all prototypes in `data.raw["ammo"]` and mak
 
 ## Notes
 
-This mod has not been tested to be compatible with multiplayer, and has had no thought put into the design to make it such. Also, currently locale entries are only present for items forked from the base-game ammunition, meaning that the names of any items forked from mod ammunition will display the internal name (this does NOT affect functionality of the item, just appearance).
+This mod has not been tested to be compatible with multiplayer, and has had no thought put into the design to make it such. ~~Also, currently locale entries are only present for items forked from the base-game ammunition, meaning that the names of any items forked from mod ammunition will display the internal name (this does NOT affect functionality of the item, just appearance).~~ This has been fixed in version 0.2.0, by utilising `LocalisedString` mechanics.
 
 ## Contributing
 
