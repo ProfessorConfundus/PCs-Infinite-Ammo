@@ -17,7 +17,7 @@ data:extend{unlimitedFirearmMagazine,unlimitedFirearmMagazine_recipe} ]]
 
 
 
--- todo: finish porting naming system to better LocalisedString version.
+-- todo: none
 
 
 local rustyLocale = require '__rusty-locale__.locale'
@@ -78,9 +78,10 @@ for _, prototype in pairs(data.raw["ammo"]) do
     --log("\n")
 
 ---@diagnostic disable-next-line: undefined-field
-    local currentWorkingRecipe = table.deepcopy(data.raw["recipe"][prototype.name])
+    --[[ local currentWorkingRecipe = table.deepcopy(data.raw["recipe"][prototype.name])
     --log(currentWorkingRecipe.name)
     currentWorkingRecipe.name = "pc-unlimited-" .. prototype.name
+    currentWorkingRecipe.category = "crafting"
     currentWorkingRecipe.normal = {
         enabled = true,
         ingredients = {{prototype.name,1},{"stone",1}},
@@ -88,7 +89,17 @@ for _, prototype in pairs(data.raw["ammo"]) do
         hidden = false,
         hide_from_player_crafting = false
     }
-    currentWorkingRecipe.expensive = nil
+    currentWorkingRecipe.expensive = nil ]]
+
+    local currentWorkingRecipe = {
+        type = "recipe",
+        name = "pc-infinite-" .. prototype.name,
+        normal = {
+            ingredients = {{prototype.name,1},{"stone",1}},
+            result = "pc-unlimited-" .. prototype.name,
+        },
+        expensive = nil
+    }
 
     --log(currentWorkingRecipe.name)
 

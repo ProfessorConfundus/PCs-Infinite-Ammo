@@ -3,3 +3,12 @@ Version: 0.2.1
 Date: 2022-02-06
   Bugfixes:
     - icons vs. icon prototype issue
+---------------------------------------------------------------------------------------------------
+Version: 0.3.0
+Date: 2022-02-26
+  Optimisations:
+    - Reworked recipe generation system.
+  Minor Features:
+    - All infinite ammo items can now be crafted by hand, rather than by the same machine that makes the original item.
+  Bugfixes:
+    - Fixed issue with some recipes not generating correctly and crashing at data stage.
