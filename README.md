@@ -4,7 +4,7 @@ A Factorio mod that adds versions of all weapon ammunition (including ammo added
 
 ## How it works
 
-This mod works by iterating through all prototypes in `data.raw["ammo"]` and making a version (prefixed with `pc-unlimited-` internally) that has a magazine size of `math.huge`, which is registered as infinity in-game. It then sets the ingredients to 1x original item + 1x Stone.
+This mod works by iterating through all prototypes in `data.raw["ammo"]` and making a version (prefixed with `pc-unlimited-` internally) that has a magazine size of ~~math.huge~~ approx. 340 undecillion (changed due to ammo limit changes on Factorio's behalf). It then sets the ingredients to 1x original item + 1x Stone.
 
 ## Notes
 

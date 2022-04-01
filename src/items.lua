@@ -35,7 +35,9 @@ for _, prototype in pairs(data.raw["ammo"]) do
         goto continue
     end
     currentWorkingPrototype.name = "pc-unlimited-" .. currentWorkingPrototype.name
-    currentWorkingPrototype.magazine_size = math.huge
+    --                                                      |
+    currentWorkingPrototype.magazine_size = 34.0282346638528850000000000000000000000e37 -- TODO: Find the true highest value for this, as it seems Factorio might have a bug related to data type limits (or I just don't know what I'm doing, which is likely).
+--  currentWorkingPrototype.magazine_size = 4.4028234663852894248860260600420480424e37
 	local infinityIcon = {
 		icon = "__PCs-Infinite-Ammo__/icons/infinity icon 64.png",
 		icon_size = 64

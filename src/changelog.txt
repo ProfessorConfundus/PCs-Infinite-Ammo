@@ -12,3 +12,8 @@ Date: 2022-02-26
     - All infinite ammo items can now be crafted by hand, rather than by the same machine that makes the original item.
   Bugfixes:
     - Fixed issue with some recipes not generating correctly and crashing at data stage.
+---------------------------------------------------------------------------------------------------
+Version: 0.3.1
+Date: 2022-04-02
+  Bugfixes:
+    - hotfix for startup failure caused by ammo limit change in Factorio 1.1.57 (dodgy, quick fix, needs improvement later on)
