@@ -17,3 +17,12 @@ Version: 0.3.1
 Date: 2022-04-02
   Bugfixes:
     - hotfix for startup failure caused by ammo limit change in Factorio 1.1.57 (dodgy, quick fix, needs improvement later on)
+---------------------------------------------------------------------------------------------------
+Version: 0.3.2
+Date: 2025-03-16
+  Bugfixes:
+    - fixed problems with icons and recipe due to 2.0 recipe formatting.
+    - changed magazine size AGAIN due to Factorio changing limit AGAIN.
+    - fixed recipe locale generation.
+  Changes:
+    - updated icon for infinity symbol.

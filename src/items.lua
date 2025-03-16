@@ -21,7 +21,7 @@ data:extend{unlimitedFirearmMagazine,unlimitedFirearmMagazine_recipe} ]]
 
 
 local rustyLocale = require '__rusty-locale__.locale'
-
+local special = true
 
 local generatedPrototypes = {}
 local generatedRecipes = {}
@@ -36,31 +36,32 @@ for _, prototype in pairs(data.raw["ammo"]) do
     end
     currentWorkingPrototype.name = "pc-unlimited-" .. currentWorkingPrototype.name
     --                                                      |
-    currentWorkingPrototype.magazine_size = 34.0282346638528850000000000000000000000e37 -- TODO: Find the true highest value for this, as it seems Factorio might have a bug related to data type limits (or I just don't know what I'm doing, which is likely).
---  currentWorkingPrototype.magazine_size = 4.4028234663852894248860260600420480424e37
-	local infinityIcon = {
-		icon = "__PCs-Infinite-Ammo__/icons/infinity icon 64.png",
-		icon_size = 64
-	}
-	if currentWorkingPrototype.icons then
+    currentWorkingPrototype.magazine_size = 4000000000 -- TODO: Find the true highest value for this, as Factorio does not want to tell me the real highest value for this :[)
+    
+    if special then
+        infinityIcon = {
+            icon = "__PCs-Infinite-Ammo__/icons/special.png",
+            icon_size = 64
+        }
+    else
+        infinityIcon = {
+            icon = "__PCs-Infinite-Ammo__/icons/blue.png",
+            icon_size = 64
+        }
+    end
+
+    if currentWorkingPrototype.icons then
 		table.insert(currentWorkingPrototype.icons, infinityIcon)
-	elseif currentWorkingPrototype.icon then
+ 	elseif currentWorkingPrototype.icon then
 		currentWorkingPrototype.icons = {
 			{
 				icon = currentWorkingPrototype.icon
 			},
 			infinityIcon,
-		}
+		} 
 	else
 		log("Icons and icon is missing for "..currentWorkingPrototype.name..". Will probably break if anything is changed")
-	--[[
-		currentWorkingPrototype.icons = {
-			{
-				icon = currentWorkingPrototype.icon --nil will cause an error (no icon)
-			},
-			infinityIcon,
-		}
-	--]]
+
 	end
 
     local currentWorkingPrototypeLocale = rustyLocale.of_item(prototype)
@@ -96,12 +97,13 @@ for _, prototype in pairs(data.raw["ammo"]) do
     local currentWorkingRecipe = {
         type = "recipe",
         name = "pc-infinite-" .. prototype.name,
-        normal = {
-            ingredients = {{prototype.name,1},{"stone",1}},
-            result = "pc-unlimited-" .. prototype.name,
-        },
-        expensive = nil
+        ingredients = {{type="item", name = prototype.name, amount = 1}},
+        results = {{type="item", name="pc-unlimited-" .. prototype.name, amount=1}}
     }
+    
+    local currentWorkingRecipeLocale = rustyLocale.of_item(prototype)
+    currentWorkingRecipe.localised_name = {"naming-scheme.name", currentWorkingRecipeLocale.name}
+    currentWorkingRecipe.localised_description = {"naming-scheme.description", currentWorkingRecipeLocale.name}
 
     --log(currentWorkingRecipe.name)
 
