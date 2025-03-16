@@ -21,7 +21,7 @@ data:extend{unlimitedFirearmMagazine,unlimitedFirearmMagazine_recipe} ]]
 
 
 local rustyLocale = require '__rusty-locale__.locale'
-local special = true
+local special = false
 
 local generatedPrototypes = {}
 local generatedRecipes = {}
