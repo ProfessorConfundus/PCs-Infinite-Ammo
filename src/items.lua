@@ -20,7 +20,7 @@ data:extend{unlimitedFirearmMagazine,unlimitedFirearmMagazine_recipe} ]]
 -- todo: none
 
 
-local rustyLocale = require '__rusty-locale__.locale'
+local flibLocale = require '__flib__.locale'
 local special = false
 
 local generatedPrototypes = {}
@@ -64,9 +64,9 @@ for _, prototype in pairs(data.raw["ammo"]) do
 
 	end
 
-    local currentWorkingPrototypeLocale = rustyLocale.of_item(prototype)
-    currentWorkingPrototype.localised_name = {"naming-scheme.name", currentWorkingPrototypeLocale.name}
-    currentWorkingPrototype.localised_description = {"naming-scheme.description", currentWorkingPrototypeLocale.name}
+    local currentWorkingPrototypeLocale = flibLocale.of_item(prototype)
+    currentWorkingPrototype.localised_name = {"naming-scheme.name", currentWorkingPrototypeLocale}
+    currentWorkingPrototype.localised_description = {"naming-scheme.description", currentWorkingPrototypeLocale}
 
     --log(currentWorkingPrototype.name)
 
@@ -101,9 +101,9 @@ for _, prototype in pairs(data.raw["ammo"]) do
         results = {{type="item", name="pc-unlimited-" .. prototype.name, amount=1}}
     }
     
-    local currentWorkingRecipeLocale = rustyLocale.of_item(prototype)
-    currentWorkingRecipe.localised_name = {"naming-scheme.name", currentWorkingRecipeLocale.name}
-    currentWorkingRecipe.localised_description = {"naming-scheme.description", currentWorkingRecipeLocale.name}
+    local currentWorkingRecipeLocale = flibLocale.of_item(prototype)
+    currentWorkingRecipe.localised_name = {"naming-scheme.name", currentWorkingRecipeLocale}
+    currentWorkingRecipe.localised_description = {"naming-scheme.description", currentWorkingRecipeLocale}
 
     --log(currentWorkingRecipe.name)
 
@@ -133,9 +133,9 @@ testItemPrototype.icons = {
     }
 }
 
-local testItemLocale = rustyLocale.of_item(testItemPrototype)
--- testItemPrototype.localised_name = {"naming-scheme.name", testItemLocale.name}
--- testItemPrototype.localised_description = {"naming-scheme.description", testItemLocale.name}
+local testItemLocale = flibLocale.of_item(testItemPrototype)
+-- testItemPrototype.localised_name = {"naming-scheme.name", testItemLocale}
+-- testItemPrototype.localised_description = {"naming-scheme.description", testItemLocale}
 
 --log("\n")
 --log("data extending ---")
